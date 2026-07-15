@@ -1,86 +1,96 @@
 # Reinforcement Learning - 1st Project
 
-A comprehensive reinforcement learning project exploring fundamental RL concepts and algorithms.
+Multi-Armed Bandit algorithms applied to wireless channel selection problems using UCB (Upper Confidence Bound) strategy.
 
-## 📋 Overview
+## 📋 Project Overview
 
-This project implements core reinforcement learning algorithms and concepts, providing hands-on experience with:
-- Markov Decision Processes (MDPs)
-- Value iteration and policy iteration
-- Q-learning and temporal difference learning
-- Environment interaction and agent training
+This project implements and compares two distinct scenarios of the UCB (Upper Confidence Bound) algorithm for solving multi-armed bandit problems in a wireless communication context:
 
-## 🚀 Getting Started
+- **Case A**: Joint arm selection with combined feedback
+- **Case B**: Per-user independent channel selection
 
-### Prerequisites
+The analysis includes theoretical regret bounds verification and practical performance evaluation through Monte Carlo simulations.
 
-- Python 3.7+
+## 🎯 Problem Description
+
+Two users compete for resources across 5 wireless channels with noise-corrupted SNR (Signal-to-Noise Ratio). The goal is to find the optimal channel allocation that maximizes cumulative rewards while minimizing regret.
+
+## 📁 Repository Structure
+
+```
+Reinforcment-Learning---1st-Project/
+├── README.md                                      # This file
+├── Assignment_1.ipynb                            # Main implementation and analysis
+└── Reinforcement_Learning_and_Dynamic_Optimization_1.pdf  # Course reference material
+```
+
+## 🔧 Key Algorithms & Concepts
+
+### UCB Algorithm (Case A)
+- **20 arms**: All possible (user1_channel, user2_channel) combinations where channels differ
+- **Strategy**: Joint optimization with single feedback signal
+- **Metrics**: Sublinear regret growth, convergence to optimal arm
+
+### UCB Algorithm (Case B)
+- **Per-user selection**: User 1 and User 2 independently select channels
+- **Constraint**: Users cannot select the same channel simultaneously
+- **Strategy**: Separate value estimation with conflict resolution
+
+## 📊 Features
+
+The notebook includes:
+- **Theoretical Regret Bounds**: O(log T) complexity verification
+- **Practical Regret**: Measured from actual noisy rewards
+- **Cumulative Average Reward**: Convergence analysis
+- **Arm Selection Distribution**: Visualization of learning patterns
+- **Comparative Analysis**: Case A vs Case B performance
+
+## 🚀 Implementation Details
+
+### Parameters
+- **K**: 5 wireless channels
+- **T_values**: [2000, 20000] time horizons
+- **n_mc**: 100 Monte Carlo averages per round
+- **SNR Range**: [0.8, 2.0] with noise level ε = 0.6
+
+### Monte Carlo Averaging
+Each reward sample is averaged over 100 independent noise realizations to reduce variance in the noisy channel environment.
+
+## 📈 Visualizations
+
+For each algorithm case and time horizon, the following plots are generated:
+1. Theoretical vs Practical Regret
+2. Cumulative Average Reward Convergence
+3. Actual Regret vs O(log t) Theoretical Bound
+4. Final Arm Selection Counts
+
+## 📚 Key Results
+
+The implementation validates:
+- UCB algorithm achieves sublinear regret growth
+- Practical regret closely tracks theoretical predictions
+- Optimal arm is identified with high frequency
+- Case A and Case B present different trade-offs in convergence
+
+## 📝 Requirements
+
+- Python 3.x
 - NumPy
-- Matplotlib (for visualization)
-- OpenAI Gym (for environments)
+- Matplotlib
+- Jupyter Notebook
 
-### Installation
+## 🎓 Course Material
 
-```bash
-git clone https://github.com/Pavlos43/Reinforcment-Learning---1st-Project.git
-cd Reinforcment-Learning---1st-Project
-pip install -r requirements.txt
-```
-
-## 📁 Project Structure
-
-```
-├── README.md
-├── requirements.txt
-├── algorithms/
-│   ├── value_iteration.py
-│   ├── policy_iteration.py
-│   └── q_learning.py
-├── environments/
-│   └── custom_env.py
-└── main.py
-```
-
-## 🔧 Algorithms Implemented
-
-### 1. Value Iteration
-Dynamic programming algorithm for finding optimal value functions.
-
-### 2. Policy Iteration
-Iterative algorithm that alternates between policy evaluation and improvement.
-
-### 3. Q-Learning
-Model-free temporal difference algorithm for off-policy learning.
-
-## 📊 Results & Visualization
-
-Results and training curves are saved in the `results/` directory with visualizations of:
-- Cumulative rewards over episodes
-- Learning progress
-- Policy convergence
-
-## 💡 Usage
-
-Run the main script to execute the RL algorithms:
-
-```bash
-python main.py
-```
-
-## 📚 References
-
-- Sutton & Barto: Reinforcement Learning (2nd Edition)
-- OpenAI Gym Documentation
-- Deep RL Course Materials
-
-## 📝 License
-
-This project is for educational purposes.
+See `Reinforcement_Learning_and_Dynamic_Optimization_1.pdf` for theoretical background on:
+- Markov Decision Processes
+- Bandit Problems
+- UCB Algorithm Theory
+- Regret Analysis
 
 ## 👤 Author
 
-Pavlos43
+Pavlos Horn (Pavlos43)
 
 ---
 
-For questions or improvements, feel free to open an issue or submit a pull request!
+For detailed implementation and results, run **Assignment_1.ipynb** in Jupyter Notebook.
